@@ -1,0 +1,112 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Practice
+{
+    class Bank_logic
+    {
+        private int _id;
+        private string _name;
+        private int _credit_card;
+        private bool _status;
+        private double _balance;
+        public Bank_logic(int id, string name, int credit_card, bool status, double balance)
+        {
+            this._id = id;
+            this._name = name;
+            this._credit_card = credit_card;
+            this._status = status;
+            this._balance = balance;
+        }
+        public int id
+        {
+            get { return _id; }
+        }
+        public string name
+        {
+            get { return _name; }
+            set
+            {
+                if (value != "" &&value !=null && _status == true)
+                {
+                    _name = value;
+                }
+            }
+        }
+        public int credit_card
+        {
+            get { return _credit_card; }
+        }
+        public bool status
+        {
+            get { return _status; }
+            set
+            {
+                if(_status ==true)
+                    _status = value;
+            }
+        }
+        public double balance
+        {
+            get { return _balance; }
+            set
+            {
+                if (_status == true)
+                {
+                    _balance = value;
+                    Console.WriteLine("Account Balance Limit is : 100rs.");
+                }
+                //else
+                //{
+                //    Console.WriteLine("Withdrawl Is Restricted");
+                //}
+            }       
+        }
+        public void Withdrawl()
+        {
+            Console.WriteLine($"Please Enter Your Withdrawl Ammount : ");
+            double wd = double.Parse(Console.ReadLine());
+            Console.WriteLine("You Withdrawl Ammount : " + wd);
+            double bal_limit = 100; 
+            double result = balance - wd;
+            if(result >= bal_limit)
+            {
+                Console.WriteLine("Old Account Balance : " + balance);
+                Console.WriteLine("Success Withdrwal Of : " + result);
+                Console.WriteLine("Please Visit Again.");
+            }
+            else
+            {
+                Console.WriteLine("Restricted Withdrawl Ammount Due To Insufficent Account Balance.");
+                Console.WriteLine("Please Maintain Minimum 100rs.");
+            }
+        }
+
+
+        static void Main()
+        {
+            Bank_logic GSD = new Bank_logic(101, "Neeraj Nath", 101201, true, 5000.00);
+            if (GSD.status == true)
+            {       if(GSD.balance < 100.00)
+                        Console.WriteLine("Please Add Money To Maintain Acc Minimun Balance Should 500rs. ");
+                Console.WriteLine("Account Is Active: Transection is Active");
+            }
+            else
+            {
+
+                Console.WriteLine("Account Is Deactivate : Contact Your Branch Manager");
+            };
+            Console.WriteLine($"Welcome To Account Information : \n Customer ID : {GSD.id}\n Customer Name : {GSD.name}\n Customer Credit Card Number : {GSD.credit_card}\n Customer Account Status : {GSD.status} \n Customer Current Balanace : {GSD.balance}");
+            //GSD.balance -= 20000;
+            //GSD.Withdrawl(200);
+            //Console.WriteLine("Total Money : " + GSD.balance);
+            GSD.Withdrawl();
+
+            Console.ReadLine();
+        }
+
+    }
+}
