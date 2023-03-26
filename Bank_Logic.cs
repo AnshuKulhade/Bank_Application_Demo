@@ -79,7 +79,7 @@ namespace Practice
                 if (result >= bal_limit)
                 {
                     Console.WriteLine("Old Account Balance : " + balance);
-                    Console.WriteLine("Success Withdrawal Of : " + result);
+                    Console.WriteLine("Current Balance Of : " + result);
                     Console.WriteLine("Please Visit Again.");
                 }
                 else
